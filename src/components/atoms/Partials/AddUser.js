@@ -1,7 +1,6 @@
 import React from 'react';
 import { Row, Radio } from 'antd';
-import { FormItem, Input, InputPassword, Col, DatePicker, MaskedInput } from 'components/atoms'; // MaskedInput
-import { phoneMask, phonePattern } from 'constants/etc';
+import { FormItem, Input, InputPassword, Col, DatePicker } from 'components/atoms';
 
 const AddUser = () => {
   return (
@@ -41,23 +40,6 @@ const AddUser = () => {
         ]}
       >
         <Input placeholder='Last name*' />
-      </FormItem>
-      <FormItem
-        name='phone'
-        label='Phone'
-        labelCol={{ span: 24 }}
-        rules={[
-          {
-            required: true,
-            message: 'Phone is required',
-          },
-          {
-            pattern: phonePattern,
-            message: 'must be a valid phone number',
-          },
-        ]}
-      >
-        <MaskedInput mask={phoneMask} placeholder='Phone number*' />
       </FormItem>
       <FormItem
         name='email'
