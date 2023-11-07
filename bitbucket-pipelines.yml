@@ -1,0 +1,49 @@
+image: node:10.15.3
+
+pipelines:
+  branches:
+    dev:
+      - step:
+          name: Build and test
+          caches:
+            - node
+          script:
+            - npm install 
+            - npm run build-staging
+          artifacts:
+            - build/**
+      - step:
+          name: Deploy artifacts using SCP to STAGING
+          deployment: staging
+          script:
+            - pipe: atlassian/rsync-deploy:0.3.2
+              variables:
+                USER: 'root'
+                SERVER: '178.128.226.187'
+                REMOTE_PATH: '/var/www/staging/lawvo-client'
+                LOCAL_PATH: 'build/*'
+    master:
+      - step:
+          name: Build and test
+          caches:
+            - node
+          script:
+            - npm install 
+            # - npm test
+            - npm run build-live
+          artifacts:
+            - build/**
+      - step:
+          name: Deploy artifacts using SCP to PROD
+          deployment: production
+          script:
+            - pipe: atlassian/rsync-deploy:0.3.2
+              variables:
+                USER: 'root'
+                SERVER: '178.128.226.187'
+                REMOTE_PATH: '/var/www/html/lawvo-client'
+                LOCAL_PATH: 'build/*'
+definitions:
+  services:
+    postgres:
+      image: postgres

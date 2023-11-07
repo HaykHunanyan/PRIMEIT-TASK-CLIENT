@@ -1,0 +1,33 @@
+.profile_photo{
+  position: relative;
+  display: flex;
+  width: 285px;
+  flex-direction: row;
+  margin-top:30px;
+  .delete_photo_icon{
+    position: absolute;
+    right: -10px;
+    top:35px;
+    width: 30px;
+    height: 30px;
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+    background-color: #e8eef4;
+    border-radius: 2rem;
+    box-shadow: 0 0 3px 1px #ababab;
+    cursor: pointer;
+    transition: all ease 0.1s;
+    &:hover {
+      box-shadow: 0 0 5px 1px #ababab;
+    }
+  }
+  img{
+    width:100px;
+    height:100px;
+    background-size: cover;
+    border-radius: 10rem;
+    box-shadow: 0 0 5px 1px #ababab;
+    margin-left: 31px;
+  }
+}
